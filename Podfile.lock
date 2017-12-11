@@ -1,14 +1,31 @@
 PODS:
+  - Alamofire (4.5.1)
   - CHTCollectionViewWaterfallLayout (0.9.7):
     - CHTCollectionViewWaterfallLayout/ObjC (= 0.9.7)
   - CHTCollectionViewWaterfallLayout/ObjC (0.9.7)
+  - ESPullToRefresh (2.7)
+  - Kingfisher (4.2.0)
+  - MagicalRecord (2.3.2):
+    - MagicalRecord/Core (= 2.3.2)
+  - MagicalRecord/Core (2.3.2)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - Alamofire
   - CHTCollectionViewWaterfallLayout
+  - ESPullToRefresh
+  - Kingfisher
+  - MagicalRecord
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   CHTCollectionViewWaterfallLayout: 9d11068fafecac106695bb5a5d6d0f738483b598
+  ESPullToRefresh: 119e2710b82b75536aab2bbe4883ba119fca35c8
+  Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
+  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 989d17c36d1d6ccd601389eb9eaeeaaa7d74e0a3
+PODFILE CHECKSUM: 97b7e2cf5a29c130ed1bc8aec72096402a2f1c7f
 
 COCOAPODS: 1.2.1

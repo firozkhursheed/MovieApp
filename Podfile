@@ -7,5 +7,10 @@ target 'MovieApp' do
 
   # Pods for MovieApp
   pod 'CHTCollectionViewWaterfallLayout'
+  pod 'SwiftyJSON'
+  pod 'Alamofire'
+  pod 'MagicalRecord'
+  pod 'Kingfisher'
+  pod 'ESPullToRefresh'
 
 end

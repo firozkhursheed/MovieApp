@@ -9,11 +9,16 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Helvetica.ttc">
+            <string>Helvetica-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Movies-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Movies" id="BYZ-38-t0r" customClass="HomeViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Movies" id="BYZ-38-t0r" customClass="HomeViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -71,7 +76,7 @@
         <!--Detail-->
         <scene sceneID="54g-Kb-XSb">
             <objects>
-                <viewController title="Detail" automaticallyAdjustsScrollViewInsets="NO" id="6pm-WD-39f" customClass="ItemDetailViewController" customModule="Transitions" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Detail" automaticallyAdjustsScrollViewInsets="NO" id="6pm-WD-39f" customClass="ItemDetailViewController" customModule="MovieApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MZ3-hx-33u"/>
                         <viewControllerLayoutGuide type="bottom" id="yQ2-1w-IkB"/>
@@ -81,9 +86,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JY9-SI-WX4">
-                                <rect key="frame" x="16" y="80" width="343" height="256"/>
+                                <rect key="frame" x="16" y="80" width="343" height="300"/>
+                                <color key="backgroundColor" red="0.45098039215686275" green="0.99215686274509807" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="256" id="AwX-aP-IOU"/>
+                                    <constraint firstAttribute="height" constant="300" id="AwX-aP-IOU"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -91,10 +97,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cr1-2v-9PC">
-                                <rect key="frame" x="24" y="344" width="327" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cr1-2v-9PC">
+                                <rect key="frame" x="24" y="388" width="327" height="25.5"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="22"/>
+                                <color key="textColor" red="0.34901960784313724" green="0.40392156862745099" blue="0.44705882352941173" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>

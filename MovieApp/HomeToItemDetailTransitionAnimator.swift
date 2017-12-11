@@ -15,16 +15,19 @@ enum TransitionState {
 
 class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
-  let animationDuration = 0.3
+  // MARK: - Constants
+  private let animationDuration = 0.3
+  
+  // MARK: - Variables
   var isPresenting = false
   var isInteractiveTransition = false
 
-  var interactiveSnapshotView: UIView?
-  var dismissContainerView: UIView?
-  var dismissToView: UIView?
-  var dismissInitialLocationOffset = CGPoint.zero
-  var interactiveSnapshotViewFinalFrame: CGRect?
-  var scaleDownTransformValue: CGFloat?
+  private var interactiveSnapshotView: UIView?
+  private var dismissContainerView: UIView?
+  private var dismissToView: UIView?
+  private var dismissInitialLocationOffset = CGPoint.zero
+  private var interactiveSnapshotViewFinalFrame: CGRect?
+  private var scaleDownTransformValue: CGFloat?
   
   // MARK: - UIViewControllerAnimatedTransitioning
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -109,7 +112,7 @@ class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTran
     let scaledSize = CGSize(width: fromView.frame.size.width * scaleDownTransformValue!, height: fromView.frame.size.height * scaleDownTransformValue!)
 
     UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: .calculationModeLinear, animations: {
-      UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/3) {
+      UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1/10) {
         fromView.alpha = 0.0
       }
 
@@ -141,6 +144,7 @@ class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTran
     }
   }
 
+  // MARK: - Interactive Transition
   func handlePanGesture(_ gestureRecognizer: UIPanGestureRecognizer, progress: CGFloat) {
     let location = gestureRecognizer.location(in: dismissContainerView)
     if interactiveSnapshotView != nil && dismissInitialLocationOffset == CGPoint.zero {
@@ -170,6 +174,7 @@ class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTran
     }
   }
 
+  // MARK: - Private Methods
   private func addNavigationGradientLayer(to containerView: UIView, from viewController: UIViewController) {
     if let navBar = viewController.navigationController?.navigationBar {
       let gradient = GradientHelper.createNavigationBarGradient(with: CGRect(origin: .zero, size: CGSize(width: UIApplication.shared.statusBarFrame.width, height: UIApplication.shared.statusBarFrame.height + navBar.frame.height)))
@@ -186,8 +191,8 @@ class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTran
       shouldHide = false
     }
 
-    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-      self.getCell(from: homeVC).imageView.isHidden = shouldHide
+    DispatchQueue.main.asyncAfter(deadline: .now(), execute: { [weak self] in
+      self?.getCell(from: homeVC).imageView.isHidden = shouldHide
       itemDetailVC.itemImageView.isHidden = shouldHide
     })
   }

@@ -10,26 +10,29 @@ import UIKit
 
 class SwipePercentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransition {
 
+  // MARK: - Variables
   var homeToItemDetailTransitionAnimator: HomeToItemDetailTransitionAnimator!
   var isInteractionInProgress = false
   private var shouldCompleteTransition = false
   private weak var viewController: UIViewController!
 
+  // MARK: - Add Gesture
   func wireTo(viewController: UIViewController) {
     self.viewController = viewController
-    DispatchQueue.main.async {
-      self.prepareGestureRecognizer(in: viewController.view)
+    DispatchQueue.main.async { [weak self] in
+      self?.prepareGestureRecognizer(in: viewController.view)
     }
   }
 
+  // MARK :- Swipe gesture for interactive transition
   private func prepareGestureRecognizer(in view: UIView) {
     let gesture = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
     view.addGestureRecognizer(gesture)
   }
 
-  @objc func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
+  @objc private func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
     let translation = gestureRecognizer.translation(in: gestureRecognizer.view!.superview!)
-    var progress = (translation.y / 500)
+    var progress = (translation.y / (UIScreen.main.bounds.size.height - 100))
     progress = CGFloat(fminf(fmaxf(Float(progress), 0.0), 0.5))
 
     switch gestureRecognizer.state {
@@ -40,7 +43,7 @@ class SwipePercentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransit
       completionSpeed = 0.999  // https://stackoverflow.com/a/22968139
       
     case .changed:
-      shouldCompleteTransition = progress > 0.3
+      shouldCompleteTransition = progress > 0.2
       update(progress)
       
     case .cancelled:
@@ -62,5 +65,4 @@ class SwipePercentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransit
 
     homeToItemDetailTransitionAnimator.handlePanGesture(gestureRecognizer, progress: progress)
   }
-  
 }

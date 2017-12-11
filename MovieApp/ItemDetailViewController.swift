@@ -6,17 +6,18 @@
 //  Copyright © 2017 Firoz Khursheed. All rights reserved.
 //
 
-import UIKit
-
 class ItemDetailViewController: BaseViewController {
 
+  // MARK: - IBOutlet
   @IBOutlet weak var itemImageView: UIImageView!
   @IBOutlet weak var itemTitle: UILabel!
 
   @IBOutlet weak var itemImageViewHeightLayoutConstraint: NSLayoutConstraint!
 
-  var item: Item!
+  // MARK: - Variables
+  var movie: Movie!
 
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -35,18 +36,13 @@ class ItemDetailViewController: BaseViewController {
     return itemImageView.frame
   }
   
-  func setupUI() {
-    itemImageView.image = item.image
+  // MARK: - Private Methods
+  private func setupUI() {
+    itemImageView.kf.setImage(with: movie.posterUrl)
     itemImageView.layer.masksToBounds = true
 
-    itemTitle.text = item.title
+    itemTitle.text = movie.originalTitle
 
-    itemImageViewHeightLayoutConstraint.constant = item.image.height(for: itemImageView.frame.size.width)
-  }
-
-  
-  func getItemImageViewFrame() -> CGRect {
-    view.layoutIfNeeded()
-    return itemImageView.frame
+    itemImageViewHeightLayoutConstraint.constant = itemImageView.image?.height(for: itemImageView.frame.size.width) ?? 300
   }
 }

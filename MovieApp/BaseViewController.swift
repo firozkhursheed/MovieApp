@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class BaseViewController: UIViewController {
 
+  // MARK: - Variables
   var navigationBarGradient: CAGradientLayer?
 
+  // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -26,6 +29,7 @@ class BaseViewController: UIViewController {
     fatalError("Must Override")
   }
   
+  // MARK: - Public Methods
   func addNavigationBarGradient() {
     removeNavigationBarGradient()
     navigationBarGradient = GradientHelper.createNavigationBarGradient(with: CGRect(origin: .zero, size: CGSize(width: UIApplication.shared.statusBarFrame.width, height: UIApplication.shared.statusBarFrame.height + navigationController!.navigationBar.frame.height)))

@@ -27,7 +27,8 @@
                         <rect key="frame" x="4" y="4" width="192" height="292"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UoO-4Z-Ivw">
-                                <rect key="frame" x="0.0" y="0.0" width="192" height="228.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="192" height="228"/>
+                                <color key="backgroundColor" red="0.45098039215686275" green="0.99215686274509807" blue="1" alpha="0.30473993288590606" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="1X9-0D-CxL">
                                 <rect key="frame" x="0.0" y="232.5" width="192" height="51.5"/>
@@ -47,6 +48,11 @@
                                 </subviews>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="mol-IW-1bo">
+                                <rect key="frame" x="78" y="96" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -74,6 +80,7 @@
             </constraints>
             <size key="customSize" width="173" height="224"/>
             <connections>
+                <outlet property="activityIndicator" destination="mol-IW-1bo" id="qeC-2f-EI0"/>
                 <outlet property="genreLabel" destination="CnD-hq-PLo" id="DIk-Cr-zBL"/>
                 <outlet property="imageView" destination="UoO-4Z-Ivw" id="wA0-OM-3sn"/>
                 <outlet property="titleLabel" destination="Idu-RR-MAk" id="Sbg-MY-KmI"/>
