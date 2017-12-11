@@ -25,7 +25,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
   var movie: Movie! {
     didSet {
       activityIndicator.startAnimating()
-      imageView.kf.setImage(with: movie.posterUrl, placeholder: nil, options: nil, progressBlock: nil) { [weak self] (_, _, _, _) in
+      imageView.kf.setImage(with: movie.imageUrl, placeholder: nil, options: nil, progressBlock: nil) { [weak self] (_, _, _, _) in
         self?.activityIndicator.stopAnimating()
       }
       

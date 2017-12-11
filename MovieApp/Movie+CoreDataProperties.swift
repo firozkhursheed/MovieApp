@@ -29,8 +29,13 @@ extension Movie {
   @NSManaged public var voteAverage: Int32
   @NSManaged public var voteCount: Int32
   
-  var posterUrl: URL? {
-    let imagePath = (posterPath ?? backdropPath) ?? ""
+  var imageUrl: URL? {
+    var imagePath = (posterPath ?? backdropPath) ?? ""
+    
+    if UIDevice.current.userInterfaceIdiom == .pad {
+      imagePath = (backdropPath ?? posterPath) ?? ""
+    }
+    
     return URL(string: "https://image.tmdb.org/t/p/w500" + imagePath)
   }
 }

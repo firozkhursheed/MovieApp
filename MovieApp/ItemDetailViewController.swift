@@ -24,6 +24,12 @@ class ItemDetailViewController: BaseViewController {
     setupUI()
   }
   
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    
+    itemImageViewHeightLayoutConstraint.constant = itemImageView.image?.height(for: itemImageView.frame.size.width) ?? 300
+  }
+  
   override func snapshotViewForTransition() -> UIView {
     let snapshotView = itemImageView.snapshotView(afterScreenUpdates: true) ?? UIView()
     let snapshotOrigin = itemImageView.convert(CGPoint.zero, to: view)
@@ -38,11 +44,9 @@ class ItemDetailViewController: BaseViewController {
   
   // MARK: - Private Methods
   private func setupUI() {
-    itemImageView.kf.setImage(with: movie.posterUrl)
+    itemImageView.kf.setImage(with: movie.imageUrl)
     itemImageView.layer.masksToBounds = true
 
     itemTitle.text = movie.originalTitle
-
-    itemImageViewHeightLayoutConstraint.constant = itemImageView.image?.height(for: itemImageView.frame.size.width) ?? 300
   }
 }

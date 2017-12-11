@@ -19,6 +19,7 @@ class HomeViewController: BaseViewController {
   
   // MARK: - Variables
   var currentIndexPath: IndexPath!
+  var orientationBeforeTransition: UIDeviceOrientation?
   
   lazy var fetchedResultsController: NSFetchedResultsController<Movie> = {
     [unowned self] in
@@ -35,8 +36,9 @@ class HomeViewController: BaseViewController {
     setupGradientShadow()
     setupCollectionView()
     setupNavigationBar()
+    setupOrientationInfo()
   }
-  
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
     
@@ -96,7 +98,9 @@ class HomeViewController: BaseViewController {
   
   private func setupGradientShadow() {
     let gradient = CAGradientLayer()
+    shadowTopView.layoutIfNeeded()
     gradient.frame = shadowTopView.bounds
+    gradient.frame.size.width = max(view.bounds.width, view.bounds.height)  // Hack for iPad, in real project an Image would be used. So there would be no need of this hack.
     gradient.colors = [UIColor.gray.withAlphaComponent(0.6).cgColor, UIColor.clear.cgColor]
     shadowTopView.layer.addSublayer(gradient)
   }
@@ -108,6 +112,10 @@ class HomeViewController: BaseViewController {
     navBar?.setBackgroundImage(UIImage(), for: .default)
     navBar?.shadowImage = UIImage()
     navBar?.isTranslucent = true
+  }
+  
+  private func setupOrientationInfo() {
+    orientationBeforeTransition = UIDevice.current.orientation
   }
   
   private func addPullToRefresh() {
@@ -153,7 +161,8 @@ extension HomeViewController: CHTCollectionViewDelegateWaterfallLayout {
     let padding: CGFloat = 25
     let collectionCellSize = collectionView.frame.size.width - padding - (8 + 20)
     let width = collectionCellSize / 2
-    let height = (width * 1.5) + HomeCollectionViewCell.detailHeight + HomeCollectionViewCell.verticalPadding // TODO: Discuss with TheMovieDB if we can get this data from API
+    let multiplier: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 0.55 : 1.5
+    let height = (width * multiplier) + HomeCollectionViewCell.detailHeight + HomeCollectionViewCell.verticalPadding // TODO: Discuss with TheMovieDB if we can get this data from API
     return CGSize(width: width, height: height)
   }
 }
@@ -162,6 +171,11 @@ extension HomeViewController: CHTCollectionViewDelegateWaterfallLayout {
 extension HomeViewController: UINavigationControllerDelegate {
   func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     if fromVC is ItemDetailViewController || toVC is ItemDetailViewController {
+      if UIDevice.current.orientation != orientationBeforeTransition {
+        orientationBeforeTransition = UIDevice.current.orientation
+        return nil
+      }
+      
       let homeToItemDetailTransitionAnimator = HomeToItemDetailTransitionAnimator()
       homeToItemDetailTransitionAnimator.isPresenting = operation == .push
       swipePercentDrivenInteractiveTransition.homeToItemDetailTransitionAnimator = homeToItemDetailTransitionAnimator
@@ -174,6 +188,10 @@ extension HomeViewController: UINavigationControllerDelegate {
   }
 
   func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    if UIDevice.current.orientation != orientationBeforeTransition {
+      return nil
+    }
+    
     return swipePercentDrivenInteractiveTransition.isInteractionInProgress ? swipePercentDrivenInteractiveTransition : nil
   }
 }

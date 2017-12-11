@@ -15,9 +15,13 @@ class BaseViewController: UIViewController {
   var navigationBarGradient: CAGradientLayer?
 
   // MARK: - Lifecycle
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     
+    addNavigationBarGradient()
+  }
+
+  override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
     addNavigationBarGradient()
   }
   
