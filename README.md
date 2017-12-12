@@ -14,7 +14,7 @@
 
 ## Installation
 
->Minimum Xcode version: 9
+>Minimum Xcode version: 9.2
 
 >Minimum Swift version: 4
 
