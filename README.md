@@ -8,9 +8,9 @@
 4. Offline support (uses CoreDate)
 5. Responsive UI
 
-![Sample iPhone](./MovieApp\ iPhone\ 480.gif)
+![Sample iPhone](./MovieAppiPhone480.gif)
 
-![Sample iPad](./MovieApp\ iPad\ 480.gif)
+![Sample iPad](./MovieAppiPad480.gif)
 
 ## Installation
 
