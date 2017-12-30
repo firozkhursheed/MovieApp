@@ -138,12 +138,20 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
+		D6396D351FF82313003C337F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D683D9891F245EF9009C8E2E /* Cells */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		D683D9641F245E7B009C8E2E = {
 			isa = PBXGroup;
 			children = (
 				D683D96F1F245E7B009C8E2E /* MovieApp */,
-				D683D96E1F245E7B009C8E2E /* Products */,
 				648BFDD8217E6C875AB36B39 /* Pods */,
+				D683D96E1F245E7B009C8E2E /* Products */,
 				A8D4C711E24A029386F34711 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -159,10 +167,8 @@
 		D683D96F1F245E7B009C8E2E /* MovieApp */ = {
 			isa = PBXGroup;
 			children = (
-				D6DD085A1F2482A100A6F5B2 /* Animators */,
 				D683D9701F245E7B009C8E2E /* AppDelegate.swift */,
 				D683D9771F245E7B009C8E2E /* Assets.xcassets */,
-				D683D9891F245EF9009C8E2E /* Cells */,
 				D683D98F1F245F43009C8E2E /* Extension */,
 				D61B02281FDB2B3D00EB847F /* Helpers */,
 				D621990B1FDD22E6002541E5 /* Library */,
@@ -170,7 +176,9 @@
 				D62199041FDD0C64002541E5 /* Network */,
 				D61B02271FDB2A7000EB847F /* Storyboards */,
 				D6DD08571F24824700A6F5B2 /* Supporting Files */,
+				D6DD085A1F2482A100A6F5B2 /* TransitionAnimators */,
 				D683D9841F245ED8009C8E2E /* View Controllers */,
+				D6396D351FF82313003C337F /* Views */,
 			);
 			path = MovieApp;
 			sourceTree = "<group>";
@@ -212,13 +220,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D6DD085A1F2482A100A6F5B2 /* Animators */ = {
+		D6DD085A1F2482A100A6F5B2 /* TransitionAnimators */ = {
 			isa = PBXGroup;
 			children = (
 				D6DD08581F24829D00A6F5B2 /* HomeToItemDetailTransitionAnimator.swift */,
 				D6DD085B1F248CEC00A6F5B2 /* SwipePercentDrivenInteractiveTransition.swift */,
 			);
-			name = Animators;
+			name = TransitionAnimators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

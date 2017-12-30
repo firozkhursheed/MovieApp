@@ -26,11 +26,11 @@ class BaseViewController: UIViewController {
   }
   
   func snapshotViewForTransition() -> UIView {
-    fatalError("Must Override")
+    preconditionFailure("Must Override")
   }
   
   func snapshotViewInitialFrame() -> CGRect {
-    fatalError("Must Override")
+    preconditionFailure("Must Override")
   }
   
   // MARK: - Public Methods

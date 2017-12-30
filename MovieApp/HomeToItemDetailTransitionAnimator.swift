@@ -159,7 +159,7 @@ class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTran
         expectedLocation.x = location.x - dismissInitialLocationOffset.x
         expectedLocation.y = location.y - dismissInitialLocationOffset.y
         interactiveSnapshotView?.center = expectedLocation
-        let transformFactor: CGFloat = -0.6
+        let transformFactor = CGFloat(-0.6)
         let localTransform = (transformFactor * progress) + 1
         self.interactiveSnapshotView?.transform = CGAffineTransform(scaleX: localTransform, y: localTransform)
       case .ended:

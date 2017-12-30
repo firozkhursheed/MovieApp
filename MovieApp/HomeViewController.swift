@@ -11,7 +11,10 @@ import CHTCollectionViewWaterfallLayout
 class HomeViewController: BaseViewController {
 
   // MARK: - Constants
-  let swipePercentDrivenInteractiveTransition = SwipePercentDrivenInteractiveTransition()
+  static private let homeToItemDetailSegue = "homeToItemDetailSegueIdentifier"
+  
+  private let collectionViewLayoutSectionInsetValue = CGFloat(10)
+  private let swipePercentDrivenInteractiveTransition = SwipePercentDrivenInteractiveTransition()
 
   // MARK: - IBOutlet
   @IBOutlet weak var collectionView: UICollectionView!
@@ -19,9 +22,10 @@ class HomeViewController: BaseViewController {
   
   // MARK: - Variables
   var currentIndexPath: IndexPath!
-  var orientationBeforeTransition: UIDeviceOrientation?
   
-  lazy var fetchedResultsController: NSFetchedResultsController<Movie> = {
+  private var orientationBeforeTransition: UIDeviceOrientation?
+  
+  private lazy var fetchedResultsController: NSFetchedResultsController<Movie> = {
     [unowned self] in
     
     let predicate = NSPredicate(format: "recordID != nil")
@@ -42,7 +46,7 @@ class HomeViewController: BaseViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
     
-    if segue.identifier == "homeToItemDetailSegue" {
+    if segue.identifier == type(of: self).homeToItemDetailSegue {
       navigationController?.delegate = self
       let itemDetailViewController = segue.destination as! ItemDetailViewController
       itemDetailViewController.movie = sender as! Movie
@@ -72,11 +76,14 @@ class HomeViewController: BaseViewController {
   
   // MARK: - Private Methods
   private func setupCollectionView() {
-    let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
-    collectionView.register(nib, forCellWithReuseIdentifier: "HomeCollectionViewCell")
+    let nib = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
+    collectionView.register(nib, forCellWithReuseIdentifier: String(describing: HomeCollectionViewCell.self))
     
     let collectionViewLayout = CHTCollectionViewWaterfallLayout()
-    collectionViewLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10)
+    collectionViewLayout.sectionInset = UIEdgeInsetsMake(collectionViewLayoutSectionInsetValue,
+                                                         collectionViewLayoutSectionInsetValue,
+                                                         collectionViewLayoutSectionInsetValue,
+                                                         collectionViewLayoutSectionInsetValue)
     collectionView.collectionViewLayout = collectionViewLayout
     
     addPullToRefresh()
@@ -100,7 +107,7 @@ class HomeViewController: BaseViewController {
     let gradient = CAGradientLayer()
     shadowTopView.layoutIfNeeded()
     gradient.frame = shadowTopView.bounds
-    gradient.frame.size.width = max(view.bounds.width, view.bounds.height)  // Hack for iPad, in real project an Image would be used. So there would be no need of this hack.
+    gradient.frame.size.width = max(view.bounds.width, view.bounds.height)  // Hack for iPad, in production App an Image would be used. So there would be no need of this hack.
     gradient.colors = [UIColor.gray.withAlphaComponent(0.6).cgColor, UIColor.clear.cgColor]
     shadowTopView.layer.addSublayer(gradient)
   }
@@ -140,7 +147,7 @@ extension HomeViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollectionViewCell", for: indexPath) as! HomeCollectionViewCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HomeCollectionViewCell.self), for: indexPath) as! HomeCollectionViewCell
     cell.movie = fetchedResultsController.object(at: indexPath)
     return cell
   }
@@ -151,17 +158,20 @@ extension HomeViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     currentIndexPath = indexPath
     let selectedItem = fetchedResultsController.object(at: indexPath)
-    performSegue(withIdentifier: "homeToItemDetailSegue", sender: selectedItem)
+    performSegue(withIdentifier: type(of: self).homeToItemDetailSegue, sender: selectedItem)
   }
 }
 
 // MARK: - CHTCollectionViewDelegateWaterfallLayout
 extension HomeViewController: CHTCollectionViewDelegateWaterfallLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let padding: CGFloat = 25
-    let collectionCellSize = collectionView.frame.size.width - padding - (8 + 20)
-    let width = collectionCellSize / 2
-    let multiplier: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 0.55 : 1.5
+    let padding = CGFloat(25)
+    let numberOfColumns = 2
+    let effectiveShadownWidth = HomeCollectionViewCell.shadowWidth * CGFloat(numberOfColumns)
+    let horizontalInset = collectionViewLayoutSectionInsetValue * CGFloat(numberOfColumns)
+    let collectionCellSize = collectionView.frame.size.width - padding - (effectiveShadownWidth + horizontalInset)
+    let width = collectionCellSize / CGFloat(numberOfColumns)
+    let multiplier: CGFloat = UIDevice.current.userInterfaceIdiom == .pad ? 0.55 : 1.5  // As per the information provided on TheMovieDB
     let height = (width * multiplier) + HomeCollectionViewCell.detailHeight + HomeCollectionViewCell.verticalPadding // TODO: Discuss with TheMovieDB if we can get this data from API
     return CGSize(width: width, height: height)
   }

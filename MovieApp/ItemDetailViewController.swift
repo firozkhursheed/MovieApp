@@ -27,7 +27,7 @@ class ItemDetailViewController: BaseViewController {
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     
-    itemImageViewHeightLayoutConstraint.constant = itemImageView.image?.height(for: itemImageView.frame.size.width) ?? 300
+    setupItemImageViewHeight()
   }
   
   override func snapshotViewForTransition() -> UIView {
@@ -48,5 +48,12 @@ class ItemDetailViewController: BaseViewController {
     itemImageView.layer.masksToBounds = true
 
     itemTitle.text = movie.originalTitle
+  }
+  
+  private func setupItemImageViewHeight() {
+    guard let itemImageHeight = itemImageView.image?.height(for: itemImageView.frame.size.width) else {
+      return
+    }
+    itemImageViewHeightLayoutConstraint.constant = itemImageHeight
   }
 }

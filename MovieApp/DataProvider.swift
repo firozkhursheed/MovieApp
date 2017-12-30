@@ -67,23 +67,23 @@ class DataProvider {
       
       // else, we create the Movie
       MagicalRecord.save({ (localContext) in
-        let newMovie = Movie.mr_createEntity(in: localContext)!
-        newMovie.adult = json["adult"].boolValue
-        newMovie.backdropPath = json["backdrop_path"].stringValue
+        let newMovie              = Movie.mr_createEntity(in: localContext)!
+        newMovie.adult            = json["adult"].boolValue
+        newMovie.backdropPath     = json["backdrop_path"].stringValue
         newMovie.originalLanguage = json["original_language"].stringValue
-        newMovie.originalTitle = json["original_title"].stringValue
-        newMovie.overview = json["overview"].stringValue
-        newMovie.popularity = json["popularity"].int32Value
-        newMovie.posterPath = json["poster_path"].stringValue
-        newMovie.recordID = json["id"].int32Value
-        newMovie.releaseDate = json["release_date"].stringValue
-        newMovie.title = json["title"].stringValue
-        newMovie.video = json["video"].boolValue
-        newMovie.voteAverage = json["voteAverage"].int32Value
-        newMovie.voteCount = json["voteCount"].int32Value
+        newMovie.originalTitle    = json["original_title"].stringValue
+        newMovie.overview         = json["overview"].stringValue
+        newMovie.popularity       = json["popularity"].int32Value
+        newMovie.posterPath       = json["poster_path"].stringValue
+        newMovie.recordID         = json["id"].int32Value
+        newMovie.releaseDate      = json["release_date"].stringValue
+        newMovie.title            = json["title"].stringValue
+        newMovie.video            = json["video"].boolValue
+        newMovie.voteAverage      = json["voteAverage"].int32Value
+        newMovie.voteCount        = json["voteCount"].int32Value
       }, completion: { (contextDidSave, error) in
         if error != nil {
-          print("Error \(String(describing: error))")
+          print("Error: \(String(describing: error))")
         }
       })
     }

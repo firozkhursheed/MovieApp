@@ -36,6 +36,7 @@ extension Movie {
       imagePath = (backdropPath ?? posterPath) ?? ""
     }
     
-    return URL(string: "https://image.tmdb.org/t/p/w500" + imagePath)
+    let imageBaseURL = "https://image.tmdb.org/t/p/w500"
+    return URL(string: imageBaseURL + imagePath)
   }
 }

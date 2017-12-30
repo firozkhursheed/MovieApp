@@ -60,7 +60,7 @@ class SwipePercentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransit
       }
       
     default:
-      print("Unsupported")
+      print("Not Supported")
     }
 
     homeToItemDetailTransitionAnimator.handlePanGesture(gestureRecognizer, progress: progress)

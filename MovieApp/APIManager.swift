@@ -13,7 +13,7 @@ class APIManager {
   static let apiPrefix = "/3"
   static let theMovieDBApiUri = "\(theMovieDBBaseUri)\(apiPrefix)"
   
-  static let apiKey = ""  // Update this with your own api_key
+  static let apiKey = ""  // Update this with your own TheMovieDB api_key
   
   static func getMovieUrl() -> String {
     return theMovieDBApiUri + "/discover/movie"

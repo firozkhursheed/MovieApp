@@ -14,6 +14,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
   // MARK: - Constants
   static let verticalPadding = CGFloat(20)
   static let detailHeight = CGFloat(51.5)
+  static let shadowWidth = CGFloat(4)
   
   // MARK: - IBOutlet
   @IBOutlet weak var imageView: UIImageView!
