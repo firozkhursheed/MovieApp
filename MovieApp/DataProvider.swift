@@ -43,7 +43,7 @@ class DataProvider {
       }
     }
     
-    var parameter = ["api_key": APIManager.apiKey,
+    var parameter = ["api_key": API.theMovieDBApiKey,
                      "sort_by": "popularity.desc",
                      "include_adult": "false",
                      "page": "1"]
@@ -52,7 +52,7 @@ class DataProvider {
       parameter["page"] = nextPage
     }
     
-    TheMovieDBService.fetchData(fromSavedUrl: APIManager.getMovieUrl(), parameters: parameter, callback: callback)
+    TheMovieDBService.fetchData(fromSavedUrl: API.movieUrl, parameters: parameter, callback: callback)
   }
   
   // MARK: - Private Methods

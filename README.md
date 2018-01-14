@@ -41,7 +41,7 @@ Open `MovieApp.xcworkspace` in Xcode.
 
 [The Movie Database (TMDb)](https://www.themoviedb.org/) is a community built movie and TV database. You will need an `api_key` from  [TMDb](https://developers.themoviedb.org/3/getting-started/introduction) to get the list of movies.
 
-Update this `api_key` in `ApiManager.swift` file in this project.
+Update this `api_key` in `Api.swift` file in this project.
 
 ----
 ## Thanks

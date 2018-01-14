@@ -18,7 +18,7 @@
 		D63252D51FD9BF6800FD7D88 /* GradientHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63252D41FD9BF6800FD7D88 /* GradientHelper.swift */; };
 		D63252D71FD9CBCF00FD7D88 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63252D61FD9CBCF00FD7D88 /* BaseViewController.swift */; };
 		D651F4FC1FDCEAF100FB9CB6 /* MovieApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D651F4FA1FDCEAF100FB9CB6 /* MovieApp.xcdatamodeld */; };
-		D65B9ED21FDDBCBA006173A3 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B9ED11FDDBCBA006173A3 /* APIManager.swift */; };
+		D65B9ED21FDDBCBA006173A3 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65B9ED11FDDBCBA006173A3 /* API.swift */; };
 		D683D9711F245E7B009C8E2E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D683D9701F245E7B009C8E2E /* AppDelegate.swift */; };
 		D683D9761F245E7B009C8E2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D683D9741F245E7B009C8E2E /* Main.storyboard */; };
 		D683D9781F245E7B009C8E2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D683D9771F245E7B009C8E2E /* Assets.xcassets */; };
@@ -46,7 +46,7 @@
 		D63252D41FD9BF6800FD7D88 /* GradientHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientHelper.swift; sourceTree = "<group>"; };
 		D63252D61FD9CBCF00FD7D88 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D651F4FB1FDCEAF100FB9CB6 /* MovieApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieApp.xcdatamodel; sourceTree = "<group>"; };
-		D65B9ED11FDDBCBA006173A3 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		D65B9ED11FDDBCBA006173A3 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		D683D96D1F245E7B009C8E2E /* MovieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D683D9701F245E7B009C8E2E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D683D9751F245E7B009C8E2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		D62199041FDD0C64002541E5 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				D65B9ED11FDDBCBA006173A3 /* APIManager.swift */,
+				D65B9ED11FDDBCBA006173A3 /* API.swift */,
 				D62199051FDD0EB4002541E5 /* DataProvider.swift */,
 				D62199021FDD0C56002541E5 /* TheMovieDBService.swift */,
 			);
@@ -176,7 +176,7 @@
 				D62199041FDD0C64002541E5 /* Network */,
 				D61B02271FDB2A7000EB847F /* Storyboards */,
 				D6DD08571F24824700A6F5B2 /* Supporting Files */,
-				D6DD085A1F2482A100A6F5B2 /* TransitionAnimators */,
+				D6DD085A1F2482A100A6F5B2 /* Transition Animators */,
 				D683D9841F245ED8009C8E2E /* View Controllers */,
 				D6396D351FF82313003C337F /* Views */,
 			);
@@ -220,13 +220,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D6DD085A1F2482A100A6F5B2 /* TransitionAnimators */ = {
+		D6DD085A1F2482A100A6F5B2 /* Transition Animators */ = {
 			isa = PBXGroup;
 			children = (
 				D6DD08581F24829D00A6F5B2 /* HomeToItemDetailTransitionAnimator.swift */,
 				D6DD085B1F248CEC00A6F5B2 /* SwipePercentDrivenInteractiveTransition.swift */,
 			);
-			name = TransitionAnimators;
+			name = "Transition Animators";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,7 +368,7 @@
 				D62199031FDD0C56002541E5 /* TheMovieDBService.swift in Sources */,
 				D6DD085C1F248CEC00A6F5B2 /* SwipePercentDrivenInteractiveTransition.swift in Sources */,
 				D63252D31FD90A9C00FD7D88 /* UIColorExtension.swift in Sources */,
-				D65B9ED21FDDBCBA006173A3 /* APIManager.swift in Sources */,
+				D65B9ED21FDDBCBA006173A3 /* API.swift in Sources */,
 				D62199061FDD0EB4002541E5 /* DataProvider.swift in Sources */,
 				D683D9871F245EF1009C8E2E /* HomeCollectionViewCell.swift in Sources */,
 				D6DD08591F24829D00A6F5B2 /* HomeToItemDetailTransitionAnimator.swift in Sources */,
