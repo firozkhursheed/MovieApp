@@ -11,7 +11,7 @@ import UIKit
 class SwipePercentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransition {
 
   // MARK: - Variables
-  var homeToItemDetailTransitionAnimator: HomeToItemDetailTransitionAnimator!
+  var scaleTransitionAnimator: ScaleTransitionAnimator!
   var isInteractionInProgress = false
   private var shouldCompleteTransition = false
   private weak var viewController: UIViewController!
@@ -63,6 +63,6 @@ class SwipePercentDrivenInteractiveTransition: UIPercentDrivenInteractiveTransit
       print("Not Supported")
     }
 
-    homeToItemDetailTransitionAnimator.handlePanGesture(gestureRecognizer, progress: progress)
+    scaleTransitionAnimator.handlePanGesture(gestureRecognizer, progress: progress)
   }
 }

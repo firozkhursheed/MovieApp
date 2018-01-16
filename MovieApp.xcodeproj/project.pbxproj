@@ -28,7 +28,7 @@
 		D683D9881F245EF1009C8E2E /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D683D9861F245EF1009C8E2E /* HomeCollectionViewCell.xib */; };
 		D683D9911F246928009C8E2E /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D683D9901F246928009C8E2E /* ItemDetailViewController.swift */; };
 		D683D9931F24767F009C8E2E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D683D9921F24767F009C8E2E /* UIImageExtension.swift */; };
-		D6DD08591F24829D00A6F5B2 /* HomeToItemDetailTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DD08581F24829D00A6F5B2 /* HomeToItemDetailTransitionAnimator.swift */; };
+		D6DD08591F24829D00A6F5B2 /* ScaleTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DD08581F24829D00A6F5B2 /* ScaleTransitionAnimator.swift */; };
 		D6DD085C1F248CEC00A6F5B2 /* SwipePercentDrivenInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DD085B1F248CEC00A6F5B2 /* SwipePercentDrivenInteractiveTransition.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +59,7 @@
 		D683D9901F246928009C8E2E /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		D683D9921F24767F009C8E2E /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		D6DD08541F247C2E00A6F5B2 /* MovieApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MovieApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		D6DD08581F24829D00A6F5B2 /* HomeToItemDetailTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeToItemDetailTransitionAnimator.swift; sourceTree = "<group>"; };
+		D6DD08581F24829D00A6F5B2 /* ScaleTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleTransitionAnimator.swift; sourceTree = "<group>"; };
 		D6DD085B1F248CEC00A6F5B2 /* SwipePercentDrivenInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipePercentDrivenInteractiveTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -223,7 +223,7 @@
 		D6DD085A1F2482A100A6F5B2 /* Transition Animators */ = {
 			isa = PBXGroup;
 			children = (
-				D6DD08581F24829D00A6F5B2 /* HomeToItemDetailTransitionAnimator.swift */,
+				D6DD08581F24829D00A6F5B2 /* ScaleTransitionAnimator.swift */,
 				D6DD085B1F248CEC00A6F5B2 /* SwipePercentDrivenInteractiveTransition.swift */,
 			);
 			name = "Transition Animators";
@@ -371,7 +371,7 @@
 				D65B9ED21FDDBCBA006173A3 /* API.swift in Sources */,
 				D62199061FDD0EB4002541E5 /* DataProvider.swift in Sources */,
 				D683D9871F245EF1009C8E2E /* HomeCollectionViewCell.swift in Sources */,
-				D6DD08591F24829D00A6F5B2 /* HomeToItemDetailTransitionAnimator.swift in Sources */,
+				D6DD08591F24829D00A6F5B2 /* ScaleTransitionAnimator.swift in Sources */,
 				D651F4FC1FDCEAF100FB9CB6 /* MovieApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

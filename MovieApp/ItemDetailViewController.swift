@@ -30,18 +30,6 @@ class ItemDetailViewController: BaseViewController {
     setupItemImageViewHeight()
   }
   
-  override func snapshotViewForTransition() -> UIView {
-    let snapshotView = itemImageView.snapshotView(afterScreenUpdates: true) ?? UIView()
-    let snapshotOrigin = itemImageView.convert(CGPoint.zero, to: view)
-    snapshotView.frame.origin = snapshotOrigin
-    return snapshotView
-  }
-
-  override func snapshotViewInitialFrame() -> CGRect {
-    view.layoutIfNeeded()
-    return itemImageView.frame
-  }
-  
   // MARK: - Private Methods
   private func setupUI() {
     itemImageView.kf.setImage(with: movie.imageUrl)
@@ -55,5 +43,19 @@ class ItemDetailViewController: BaseViewController {
       return
     }
     itemImageViewHeightLayoutConstraint.constant = itemImageHeight
+  }
+}
+
+extension ItemDetailViewController: ScaleTransitionProtocol {
+  func snapshotViewForTransition() -> UIView {
+    let snapshotView = itemImageView.snapshotView(afterScreenUpdates: true) ?? UIView()
+    let snapshotOrigin = itemImageView.convert(CGPoint.zero, to: view)
+    snapshotView.frame.origin = snapshotOrigin
+    return snapshotView
+  }
+  
+  func snapshotViewInitialFrame() -> CGRect {
+    view.layoutIfNeeded()
+    return itemImageView.frame
   }
 }

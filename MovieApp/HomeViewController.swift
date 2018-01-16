@@ -54,26 +54,6 @@ class HomeViewController: BaseViewController {
     }
   }
   
-  override func snapshotViewForTransition() -> UIView {
-    if let cell = collectionView.cellForItem(at: currentIndexPath) as? HomeCollectionViewCell {
-      let snapShotView = cell.snapshot()
-      let leftUpperPoint = cell.imageView.convert(CGPoint.zero, to: view)
-      snapShotView.frame.origin = leftUpperPoint
-      return snapShotView
-    }
-    
-    return UIView()
-  }
-  
-  override func snapshotViewInitialFrame() -> CGRect {
-    if let cell = collectionView.cellForItem(at: currentIndexPath) as? HomeCollectionViewCell {
-      let cellOrigin = cell.imageView.convert(CGPoint.zero, to: view)
-      return CGRect(origin: cellOrigin, size: cell.imageView.frame.size)
-    }
-    
-    return .zero
-  }
-  
   // MARK: - Private Methods
   private func setupCollectionView() {
     let nib = UINib(nibName: String(describing: HomeCollectionViewCell.self), bundle: nil)
@@ -186,12 +166,12 @@ extension HomeViewController: UINavigationControllerDelegate {
         return nil
       }
       
-      let homeToItemDetailTransitionAnimator = HomeToItemDetailTransitionAnimator()
-      homeToItemDetailTransitionAnimator.isPresenting = operation == .push
-      swipePercentDrivenInteractiveTransition.homeToItemDetailTransitionAnimator = homeToItemDetailTransitionAnimator
-      if swipePercentDrivenInteractiveTransition.isInteractionInProgress { homeToItemDetailTransitionAnimator.isInteractiveTransition = true }
+      let scaleTransitionAnimator = ScaleTransitionAnimator()
+      scaleTransitionAnimator.isPresenting = operation == .push
+      swipePercentDrivenInteractiveTransition.scaleTransitionAnimator = scaleTransitionAnimator
+      if swipePercentDrivenInteractiveTransition.isInteractionInProgress { scaleTransitionAnimator.isInteractiveTransition = true }
 
-      return homeToItemDetailTransitionAnimator
+      return scaleTransitionAnimator
     }
 
     return nil
@@ -210,5 +190,28 @@ extension HomeViewController: UINavigationControllerDelegate {
 extension HomeViewController: NSFetchedResultsControllerDelegate {
   func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
     collectionView.reloadData()
+  }
+}
+
+// MARK: - ScaleTransitionProtocol
+extension HomeViewController: ScaleTransitionProtocol {
+  func snapshotViewForTransition() -> UIView {
+    if let cell = collectionView.cellForItem(at: currentIndexPath) as? HomeCollectionViewCell {
+      let snapShotView = cell.snapshot()
+      let leftUpperPoint = cell.imageView.convert(CGPoint.zero, to: view)
+      snapShotView.frame.origin = leftUpperPoint
+      return snapShotView
+    }
+    
+    return UIView()
+  }
+  
+  func snapshotViewInitialFrame() -> CGRect {
+    if let cell = collectionView.cellForItem(at: currentIndexPath) as? HomeCollectionViewCell {
+      let cellOrigin = cell.imageView.convert(CGPoint.zero, to: view)
+      return CGRect(origin: cellOrigin, size: cell.imageView.frame.size)
+    }
+    
+    return .zero
   }
 }

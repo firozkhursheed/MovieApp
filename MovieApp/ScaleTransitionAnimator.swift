@@ -1,5 +1,5 @@
 //
-//  HomeToItemDetailTransitionAnimator.swift
+//  ScaleTransitionAnimator.swift
 //  MovieApp
 //
 //  Created by Firoz Khursheed on 23/07/17.
@@ -13,7 +13,12 @@ enum TransitionState {
   case end
 }
 
-class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+protocol ScaleTransitionProtocol {
+  func snapshotViewForTransition() -> UIView
+  func snapshotViewInitialFrame() -> CGRect
+}
+
+class ScaleTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
   // MARK: - Constants
   private let animationDuration = 0.3
@@ -45,7 +50,7 @@ class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTran
     guard let toView = transitionContext.view(forKey: .to) else { return }
 
     let containerView = transitionContext.containerView
-    let snapshotView = fromViewController.snapshotViewForTransition()
+    guard let snapshotView = (fromViewController as? ScaleTransitionProtocol)?.snapshotViewForTransition() else { return }
     let snapshotViewOrigin = snapshotView.frame.origin
 
     containerView.backgroundColor = UIColor.mercury
@@ -55,7 +60,7 @@ class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTran
     addNavigationGradientLayer(to: containerView, from: toViewController)
     toView.alpha = 0
     
-    let toFrame = toViewController.snapshotViewInitialFrame()
+    guard let toFrame = (toViewController as? ScaleTransitionProtocol)?.snapshotViewInitialFrame() else { return }
     let xTransformValue = toFrame.width / snapshotView.frame.width
     let yTransformValue = toFrame.height / snapshotView.frame.height
     
@@ -86,9 +91,9 @@ class HomeToItemDetailTransitionAnimator: NSObject, UIViewControllerAnimatedTran
     let fromViewInitialFrame = fromView.frame
     let containerView = transitionContext.containerView
 
-    let snapshotView = fromViewController.snapshotViewForTransition()
-    let snapshotViewInitialFrame = fromViewController.snapshotViewInitialFrame()
-    let snapshotViewFinalFrame = toViewController.snapshotViewInitialFrame()
+    guard let snapshotView = (fromViewController as? ScaleTransitionProtocol)?.snapshotViewForTransition() else { return }
+    guard let snapshotViewInitialFrame = (fromViewController as? ScaleTransitionProtocol)?.snapshotViewInitialFrame() else { return }
+    guard let snapshotViewFinalFrame = (toViewController as? ScaleTransitionProtocol)?.snapshotViewInitialFrame() else { return }
 
     fromViewController.removeNavigationBarGradient()
     

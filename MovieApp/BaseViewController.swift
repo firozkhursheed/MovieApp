@@ -24,15 +24,7 @@ class BaseViewController: UIViewController {
   override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
     addNavigationBarGradient()
   }
-  
-  func snapshotViewForTransition() -> UIView {
-    preconditionFailure("Must Override")
-  }
-  
-  func snapshotViewInitialFrame() -> CGRect {
-    preconditionFailure("Must Override")
-  }
-  
+
   // MARK: - Public Methods
   func addNavigationBarGradient() {
     removeNavigationBarGradient()
